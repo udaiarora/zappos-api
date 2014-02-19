@@ -4,23 +4,8 @@
 	<meta charset="UTF-8">
 	<title>Zappos Notifier by Udai</title>
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-	<script>
-		//url="http://api.zappos.com/Search?key=52ddafbe3ee659bad97fcce7c53592916a6bfd73&callback=wrapper";
-		function post_search(){
-			
-				var item=$('.txt').val();
-				console.log(item);
-				$.get('dance', "item="+item , function(data){
-				//$(".image-container").append(data.limit);
-				$(".image-container").html("");
-				data=$.parseJSON(data);
-				$.each(data.results,function() {
-					$(".image-container").append("<img src='"+this.thumbnailImageUrl+"'/><br/>");
-				})
-			
-			});
-		}
-	</script>
+	<script src="js/main.js"></script>
+
 	<link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
