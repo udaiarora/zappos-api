@@ -10,13 +10,9 @@ app.get('/', function(req, res) {
     res.sendfile('./views/index.html');
 });
 
-app.post('/dance', function(req, res) {
-	//var name2 = req.body.name;
-	var body="";
-	req.on('data', function (data) {
-            body += data;
-        });
-	var url="/Search?limit=5&key=52ddafbe3ee659bad97fcce7c53592916a6bfd73&term="+body,
+app.get('/dance', function(req, res) {
+	
+	var url="/Search?limit=5&key=52ddafbe3ee659bad97fcce7c53592916a6bfd73&term="+req.query.item,
 	//var url="/Product/7925931?key=52ddafbe3ee659bad97fcce7c53592916a6bfd73",
 		//create the options to pass into the get request
 		options={
@@ -26,6 +22,7 @@ app.post('/dance', function(req, res) {
 	//a little lightweight logging to watch requests
 	console.log("url:",options.host+options.path);
 	console.log("requrl:",req.url);
+	console.log(url);
 
 	//make the request server side
 	http.get(options,function(response){

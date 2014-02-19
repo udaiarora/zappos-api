@@ -7,13 +7,17 @@
 	<script>
 		//url="http://api.zappos.com/Search?key=52ddafbe3ee659bad97fcce7c53592916a6bfd73&callback=wrapper";
 		function post_search(){
-			var name=$(".txt").val();
-			$.post('dance', name , function(data){
+			
+				var item=$('.txt').val();
+				console.log(item);
+				$.get('dance', "item="+item , function(data){
 				//$(".image-container").append(data.limit);
+				$(".image-container").html("");
 				data=$.parseJSON(data);
 				$.each(data.results,function() {
 					$(".image-container").append("<img src='"+this.thumbnailImageUrl+"'/><br/>");
 				})
+			
 			});
 		}
 	</script>
