@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Zappos Notifier by Udai</title>
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script>
+		//url="http://api.zappos.com/Search?key=52ddafbe3ee659bad97fcce7c53592916a6bfd73&callback=wrapper";
+		function post_search(){
+			var name=$(".txt").val();
+			$.post('dance', name , function(data){
+				//$(".image-container").append(data.limit);
+				data=$.parseJSON(data);
+				$.each(data.results,function() {
+					$(".image-container").append("<img src='"+this.thumbnailImageUrl+"'/><br/>");
+				})
+			});
+		}
+	</script>
+	<link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+	<div class="main-content">
+
+		<div>
+			Welcome to Fake Zappos, or if I may...Fappos! Umm wait that doesn't sound right. Let's stick to Fake Zappos. Select the products you want to be notified about when the discount on them hits 20%.
+		</div><br/>
+
+		<input class="txt" type="text" placeholder="Enter Product Name">
+		<button onclick="post_search();">Click</button>
+		<div class="image-container"></div>
+	</div>
+
+</body>
+</html>
