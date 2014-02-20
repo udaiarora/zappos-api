@@ -15,9 +15,15 @@
 			Welcome to Fake Zappos, or if I may...Fappos! Umm wait that doesn't sound right. Let's stick to Fake Zappos. Select the products you want to be notified about when the discount on them hits 20%.
 		</div><br/>
 
-		<input class="txt" type="text" placeholder="Enter Product Name">
+		<input class="txt" type="text" placeholder="Enter Product Name or SKU">
 		<button onclick="post_search();">Click</button>
 		<div class="image-container"></div>
+		<div class="watch-list"></div>
+		<button onclick="post_watchlist();">Submit</button>
+		<div>
+			The system will continously check for updates on products every 5 minutes. If any of your selected products have a discount of 20% or more, they will be displayed here
+		</div>
+		<div class="discounted-items">.</div>
 	</div>
 
 </body>
