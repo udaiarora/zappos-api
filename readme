@@ -1,4 +1,5 @@
-Since there are no API's to access the user details and get their favourated/saved item list
-Things I could have improved upon-
-Could have used a template engine
-Could have used web sockets instead of AJAX calls.
+The "could have's" given more time:
+
+	Could have used a template engine
+	Could have used web sockets instead of AJAX calls.
+
