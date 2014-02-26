@@ -1,3 +1,7 @@
+// Author: Udai Arora
+// www.udaiarora.com
+// Made for Zappos Internship 2014
+
 var http= require('http');
 //var q = require('querystring');
 var express = require('express');
@@ -13,8 +17,8 @@ app.get('/', function(req, res) {
 
 app.get('/fetch', function(req, res) {
 	
-	var url="/Search?limit=20&key=52ddafbe3ee659bad97fcce7c53592916a6bfd73&term="+url_par.format(req.query.item);
-	//var url="/Product/7925931?key=52ddafbe3ee659bad97fcce7c53592916a6bfd73",
+	var url="/Search?limit=10&key=a73121520492f88dc3d33daf2103d7574f1a3166&term="+url_par.format(req.query.item);
+	//var url="/Product/7925931?key=a73121520492f88dc3d33daf2103d7574f1a3166",
 
 		//create the options to pass into the get request
 		options={
@@ -53,7 +57,6 @@ app.get('/watch', function(req, res) {
 	//a little lightweight logging to watch requests
 	//console.log(req.query.watch_list_json);
 	//console.log("requrl:",req.url);
-
 	var data=JSON.parse(req.query.watch_list_json);
 
 	var url;
@@ -63,7 +66,7 @@ app.get('/watch', function(req, res) {
 	for(var num in data.items)
 	{
 
-		url ='/Product/styleId/'+data.items[num].styleId+'?&key=52ddafbe3ee659bad97fcce7c53592916a6bfd73&includes=["styles"]';
+		url ='/Product/styleId/'+data.items[num].styleId+'?&key=a73121520492f88dc3d33daf2103d7574f1a3166&includes=["styles","thumbnailImageUrl"]';
 		options={
 			host:"api.zappos.com",
 			path:url
@@ -86,6 +89,8 @@ app.get('/watch', function(req, res) {
 			    	body=JSON.parse(responseData);
 			    	try{
 			    		var discount=body.product[0].styles[0].percentOff.replace('%','');
+			    		var thumbnailImageUrl=body.product[0].styles[0].thumbnailImageUrl;
+			    		var productUrl=body.product[0].styles[0].productUrl;
 			    	} catch(err) {
 			    		console.log(err);
 			    	}
@@ -93,7 +98,7 @@ app.get('/watch', function(req, res) {
 			    	
 			    	if(discount>=20)
 			    	{
-			    		discounted_json.disc_items.push({"percentOff":discount});
+			    		discounted_json.disc_items.push({"percentOff":discount, "thumbnailImageUrl":thumbnailImageUrl, "productUrl":productUrl});
 			    	}
 
 			    	if(data.items.length==req_count)
@@ -105,16 +110,19 @@ app.get('/watch', function(req, res) {
 
 			});
 		} catch(e) {
-			res.writeHead(200, {'Content-Type': 'text/plain'});
-			res.write("Something went wrong while trying to fetch the discounts.");
 			console.log("Something went wrong while trying to fetch the discounts.");
-			res.end();
 		}
 	}
 	function wr(){
-		res.writeHead(200, {'Content-Type': 'text/plain'});
-		res.write(JSON.stringify(discounted_json));
-		res.end();
+		try{
+
+			res.writeHead(200, {'Content-Type': 'text/plain'});
+			res.write(JSON.stringify(discounted_json));
+			res.end();
+		} catch(e) {
+			console.log("Something went wrong while trying to fetch the discounts.");
+		}
+
 	}
 
 });

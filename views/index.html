@@ -1,3 +1,7 @@
+<!-- Author: Udai Arora
+www.udaiarora.com
+Made for Zappos Internship 2014 -->
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,20 +14,36 @@
 </head>
 <body>
 	<div class="main-content">
-
-		<div>
-			Welcome to Fake Zappos, or if I may...Fappos! Umm wait that doesn't sound right. Let's stick to Fake Zappos. Select the products you want to be notified about when the discount on them hits 20%.
-		</div><br/>
-
-		<input class="txt" type="text" placeholder="Enter Product Name or SKU">
-		<button onclick="post_search();">Click</button>
-		<div class="image-container"></div>
-		<div class="watch-list"></div>
-		<button onclick="post_watchlist();">Submit</button>
-		<div>
-			The system will continously check for updates on products every 5 minutes. If any of your selected products have a discount of 20% or more, they will be displayed here
+		<div class="step1">
+			<div class="heading">
+				// Author: Udai Arora<br/>
+				// <a href="http://www.udaiarora.com" target="_blank">www.udaiarora.com</a><br>
+				// Built as a part of Zappos internship 2014 process <br><br>
+				Welcome to Fake Zappos, or if I may...Fappos! Umm wait that doesn't sound right. Let's stick with Fake Zappos.<br/>
+				Select the products you want to be notified about. You will be notified when the discount on them hits 20% or more.				
+			</div>
+			<div class="cntr">
+				<div class="search-area">
+					<input class="txt" type="text" placeholder="Enter Product/Brand Name or SKU">
+					<button class="myButton" onclick="post_search();">Click</button>
+				</div>
+			</div>
+			<span class="ttl">Search Results</span>
+			<div class="image-container white-bg clearfix"><div class="cntr"><br><br>(Search for items to display them here)</div></div>
+			<span class="ttl">Watch List</span>
+			<div class="watch-list white-bg clearfix"></div>
+			<button class="myButton" onclick="xhr();">Submit</button>
 		</div>
-		<div class="discounted-items">.</div>
+		<div class="step2 hidden">
+			<div class="heading">
+				// Author: Udai Arora<br/>
+				// <a href="http://www.udaiarora.com" target="_blank">www.udaiarora.com</a><br>
+				// Built as a part of Zappos internship 2014 process <br><br>
+				The system will continously check for updates on products every 5 minutes. If any of your selected products have a discount of 20% or more, they will be displayed here
+			</div>
+			<span class="ttl">Sale Sale Sale!</span>
+			<div class="discounted-items white-bg clearfix"></div>
+		</div>
 	</div>
 
 </body>
