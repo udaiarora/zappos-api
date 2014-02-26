@@ -3,7 +3,6 @@
 // Made for Zappos Internship 2014
 
 var http= require('http');
-//var q = require('querystring');
 var express = require('express');
 var app = express();
 var url_par= require('url');
@@ -15,6 +14,8 @@ app.get('/', function(req, res) {
 	res.sendfile('./views/index.html');
 });
 
+
+//This is called to search for a product/brand, etc
 app.get('/fetch', function(req, res) {
 	
 	var url="/Search?limit=10&key=a73121520492f88dc3d33daf2103d7574f1a3166&term="+url_par.format(req.query.item);
@@ -25,13 +26,12 @@ app.get('/fetch', function(req, res) {
 			host:"api.zappos.com",
 			path:url
 		};
-			//host:"localhost:24789" ,path:url};
 
 	//a little lightweight logging to watch requests
 	console.log("url:",options.host+options.path);
 	console.log("requrl:",req.url);
 
-	//make the request server side
+	//make the request server side of Zappos
 	http.get(options,function(response){
 		res.writeHead(200, {'Content-Type': 'text/plain'});
 		var responseData = "";
@@ -51,12 +51,10 @@ app.get('/fetch', function(req, res) {
 
 });
 
-
+//This is when the watchlist is submitted
 app.get('/watch', function(req, res) {
 
 	//a little lightweight logging to watch requests
-	//console.log(req.query.watch_list_json);
-	//console.log("requrl:",req.url);
 	var data=JSON.parse(req.query.watch_list_json);
 
 	var url;
@@ -73,7 +71,7 @@ app.get('/watch', function(req, res) {
 		};
 
 		try{
-			//make the request server side to check for the products percentageOff
+			//make the request server side of Zappos to check for the products percentageOff
 			http.get(options,function(response){
 				req_count++;
 				var responseData = "";

@@ -2,6 +2,7 @@
 // www.udaiarora.com
 // Made for Zappos Internship 2014
 
+//Function called to Search for products
 function post_search(){
 	var item=$('.txt').val();
 	console.log("Searched for: " + item);
@@ -19,6 +20,7 @@ function post_search(){
 
 var watch_list_json={items: []};
 
+//Function called to Update the discounts
 var xhr = function() {
 	$('.step1').fadeOut(200,function(){
 		$('.step2').fadeIn(200);
